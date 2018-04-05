@@ -1,6 +1,17 @@
+/*jshint esversion: 6 */
+
 var grid;
 
 
+
+class Cell {
+  constructor(column, row, size) {
+    this.column = column;
+    this.row = row;
+    this.size = size;
+    this.isAlive = false;
+  }
+}
 
 class Grid {
 
@@ -10,9 +21,20 @@ class Grid {
     this.numberOfRows = width / this.cellSize;
     this.cells = new Array(this.numberOfColumns);
 
-    for (let index of this.cells) {
-      this.cells[index] = new Array(this.numberOfRows);
+    // for (let index of this.cells) {
+    //   this.cells[index] = new Array(this.numberOfRows);
+    // }
+
+    for (var i = 0; i < this.cells.length; i++) {
+      this.cells[i] = new Array(this.numberOfRows);
     }
+
+    for (var column = 0; column < this.numberOfColumns; column++) {
+      for (var row = 0; row < this.numberOfRows; row++) {
+        this.cells[column][row] = new Cell(column, row, cellSize)
+      }
+    }
+
 
   }
 
@@ -37,14 +59,5 @@ function setup() {
 
 function draw() {
   background(250);
-
   grid.draw();
-}
-
-var x = 4;
-var y = 4;
-var twoDArray = new Array(x);
-
-for (let index of twoDArray) {
-  twoDArray[index] = new Array(y);
 }
