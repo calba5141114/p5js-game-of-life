@@ -11,6 +11,20 @@ class Cell {
     this.size = size;
     this.isAlive = false;
   }
+
+  draw() {
+    for (var row = 0; row < this.numberOfRows; row++) {
+
+      if (!this.isAlive) {
+        fill(240);
+      } else if (this.isAlive) {
+        fill(200, 0, 200);
+      }
+
+      noStroke();
+      rect(column * this.cellSize + 1, row * this.cellSize + 1, this.cellSize - 1, this.cellSize - 1);
+    }
+  }
 }
 
 class Grid {
@@ -21,19 +35,19 @@ class Grid {
     this.numberOfRows = width / this.cellSize;
     this.cells = new Array(this.numberOfColumns);
 
-    // for (let index of this.cells) {
-    //   this.cells[index] = new Array(this.numberOfRows);
-    // }
 
+    //  creates an array inside the indexes of the this.cells array the length of this.numberOfRows
     for (var i = 0; i < this.cells.length; i++) {
-      this.cells[i] = new Array(this.numberOfRows);
+      this.cells[i] = new Array(this.numberOfRows); //
     }
 
+    // filling the inner arrays with values.
     for (var column = 0; column < this.numberOfColumns; column++) {
       for (var row = 0; row < this.numberOfRows; row++) {
-        this.cells[column][row] = new Cell(column, row, cellSize)
+        this.cells[column][row] = new Cell(column, row, cellSize);
       }
     }
+
 
 
   }
@@ -47,6 +61,12 @@ class Grid {
       }
     }
   }
+
+
+
+
+
+
 }
 
 
