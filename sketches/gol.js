@@ -12,6 +12,15 @@ class Cell {
     this.isAlive = false;
   }
 
+  setIsAlive(value) {
+    if (value == true) {
+      this.isAlive = true;
+    } else if (value == false) {
+      this.isAlive = false;
+    }
+  }
+
+
   draw() {
     if (this.isAlive) {
       fill(200, 0, 200);
@@ -46,6 +55,7 @@ class Grid {
     }
   }
 
+// draws all the cells on the board
   draw() {
     for (var column = 0; column < this.numberOfColumns; column++) {
       for (var row = 0; row < this.numberOfRows; row++) {
@@ -54,7 +64,14 @@ class Grid {
     }
   }
 
-
+  // assigns random false and trues to each cell.
+  randomize(){
+    for (var column = 0; column < this.numberOfColumns; column++) {
+         for (var row = 0; row < this.numberOfRows; row++) {
+           this.cells[column][row].setIsAlive(floor(random(2)));
+         }
+       }
+     }
 
 
 }
@@ -65,6 +82,7 @@ class Grid {
 function setup() {
   createCanvas(400, 400);
   grid = new Grid(20);
+  grid.randomize();
 }
 
 function draw() {
