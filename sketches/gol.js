@@ -13,18 +13,15 @@ class Cell {
   }
 
   draw() {
-    for (var row = 0; row < this.numberOfRows; row++) {
-
-      if (!this.isAlive) {
-        fill(240);
-      } else if (this.isAlive) {
-        fill(200, 0, 200);
-      }
-
-      noStroke();
-      rect(column * this.cellSize + 1, row * this.cellSize + 1, this.cellSize - 1, this.cellSize - 1);
+    if (this.isAlive) {
+      fill(200, 0, 200);
+    } else if (!this.isAlive) {
+      fill(240);
     }
+    noStroke();
+    rect(this.column * this.size + 1, this.row * this.size + 1, this.size - 1, this.size - 1);
   }
+
 }
 
 class Grid {
@@ -44,25 +41,18 @@ class Grid {
     // filling the inner arrays with values.
     for (var column = 0; column < this.numberOfColumns; column++) {
       for (var row = 0; row < this.numberOfRows; row++) {
-        this.cells[column][row] = new Cell(column, row, cellSize);
+        this.cells[column][row] = new Cell(column, row, this.cellSize);
       }
     }
-
-
-
   }
 
   draw() {
     for (var column = 0; column < this.numberOfColumns; column++) {
       for (var row = 0; row < this.numberOfRows; row++) {
-        fill(240);
-        noStroke();
-        rect(column * this.cellSize + 1, row * this.cellSize + 1, this.cellSize - 1, this.cellSize - 1);
+        this.cells[column][row].draw();
       }
     }
   }
-
-
 
 
 
